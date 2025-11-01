@@ -1,0 +1,5 @@
+https://reqres.in/api/users/ - x-api-key:reqres-free-v1
+GET
+POST - body:form-data
+PUT - body:raw
+https://jsonplaceholder.typicode.com/posts/1
