@@ -1,0 +1,44 @@
+##week4
+sudo snap install docker
+
+sudo usermod -aG docker $USER
+
+
+mkdir mywebapp
+cd mywebapp
+
+nano app.py
+
+echo "flask" > requirements.txt
+
+nano Dockerfile
+
+
+docker build -t mywebapp .
+
+docker run -d -p 5000:5000 mywebapp
+
+
+##week5
+
+
+docker pull ubuntu
+
+docker run -it ubuntu
+docker ps
+docker ps -a
+docker run -d --name test_container ubuntu sleep infinity
+docker exec -it test_container bash
+
+##w6
+
+docker run -d --name test_container ubuntu sleep infinity
+docker ps
+docker ps -a
+docker stop test_container
+docker ps
+docker ps -a
+docker start test_container
+docker ps
+docker stop test_container
+docker rm test_container
