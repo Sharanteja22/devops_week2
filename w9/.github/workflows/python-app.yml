@@ -1,0 +1,40 @@
+name: Python CI
+
+# 🎯 Define when the workflow should run
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    # ⚙️ Specify the operating system environment
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: ⬇️ Check out repository code
+        # Uses an official action to fetch the code
+        uses: actions/checkout@v3
+
+      - name: 🐍 Set up Python 3.11
+        # Uses an official action to set up the Python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          # Optional: Use a dependency cache for faster builds
+          cache: 'pip' 
+
+      - name: 📦 Install dependencies
+        # Assuming you have a requirements.txt file
+        run: |
+          python -m pip install --upgrade pip
+          # Install production and test dependencies
+          pip install -r requirements.txt
+          pip install unittest-xml-reporting # Example test reporter
+
+      - name: ✅ Run Unit Tests
+        # Runs the standard unittest module; add verbosity for better output
+        # If your tests are not in 'tests.py', adjust the discovery pattern
+        run: python -m unittest discover -v
+        # Alternative for a single file: python -m unittest tests.py
